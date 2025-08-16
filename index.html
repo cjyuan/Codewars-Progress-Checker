@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Username Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="script.mjs"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Structuring and Testing Data (Codewars Progress)</h1>
+  <form action="">
+    <label for="username">Codewars Username:</label>
+    <input type="text" id="username" name="username" required>
+    <button type="submit" id="check-btn">Check progress</button>
+  </form>
+
+  <div id="message"></div>
+  <hr>
+
+  <ol id="katas-list">  
+    <template id="kata-li-template">
+      <li class="kata-li">
+        <span class="kata-title"><a href="{codewar_kata_url}" target="_blank">{Kata Title}</a></span>
+        <span class="kata-completed"></span> <!-- add class "Yes" if completed -->
+      </li>
+    </template>  
+  </ol>
+
+</body>
+</html>
