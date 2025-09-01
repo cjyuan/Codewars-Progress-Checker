@@ -1,31 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Username Form</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Codewars Progress Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="script.mjs"></script>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <h1>Structuring and Testing Data (Codewars Progress)</h1>
-  <form action="">
-    <label for="username">Codewars Username:</label>
-    <input type="text" id="username" name="username" required>
-    <button type="submit" id="check-btn">Check progress</button>
-  </form>
+    <script type="module" src="src/js/app.mjs"></script>
+    <link rel="stylesheet" href="src/css/styles.css">
+  </head>
+  <body>
+    <h1>Codewars Progress Checker</h1>
 
-  <div id="message"></div>
-  <hr>
+    <form autocomplete="on">
+      <label for="username" class="sr-only">Codewars Username</label>
+      <input type="text" id="username" autocomplete="on" placeholder="Codewars username">
+      <button type="button" id="check-btn">Check</button>
+    </form>
 
-  <ol id="katas-list">  
+    <div id="message" aria-live="polite" role="alert">
+      <span id="message-text"></span>
+      <button id="message-close" aria-label="Close message">×</button>
+    </div>
+
+    <div id="user-info">
+     <div><span>Username:</span><span id="user-username"></span></div>
+     <div><span>Name:</span><span id="user-name"></span></div>
+     <div><span>Honor:</span><span id="user-honor"></span></div>
+    </div> 
+
+    <div id="collections-container"></div>
+
+    <template id="collection-template">
+      <details class="collection-details">
+        <summary>
+          <div class="collection-header">
+            <span class="collection-name"></span>
+            <span class="collection-completion-status"></span>
+          </div>
+        </summary>
+
+        <ol class="katas-list"></ol>
+      </details>
+    </template>
+
     <template id="kata-li-template">
       <li class="kata-li">
-        <span class="kata-title"><a href="{codewar_kata_url}" target="_blank">{Kata Title}</a></span>
-        <span class="kata-completed"></span> <!-- add class "Yes" if completed -->
+        <span class="kata-title"><a href="{codewar_kata_url}" target="_blank"></a></span>
+        <!-- add class "completed" or "incomplete"  to indicate completion status -->        
+        <span class="kata-completed"></span>        
       </li>
-    </template>  
-  </ol>
-
-</body>
+    </template>
+  </body>
 </html>

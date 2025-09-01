@@ -1,0 +1,297 @@
+:root {
+  /* body */
+  --color-bg: #f9fafb;
+  --color-text: #222;
+
+  /* Form's button */
+  --color-on-primary: white;
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+
+  /* Different level of grays */
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-600: #4b5563;
+  --color-gray-800: #111827;
+
+  --color-collection-name: var(--color-gray-800);
+  --color-completion-status: var(--color-gray-600);
+
+  /* 
+     1) Message of class "success" / "error"
+     2) complete/incomplete status 
+  */
+  --color-success: #16a34a;
+  --color-error: #b91c1c;
+
+  --color-message-box-bg: #fef3c7;
+
+  --radius-md: 0.5rem;
+  --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  --border-on-light-bg: 1px solid var(--color-gray-300);
+}
+
+/* Base reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 1rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+
+  label {
+    font-weight: 600;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.5rem 0.75rem;
+    border: var(--border-on-light-bg);
+    border-radius: var(--radius-md);
+  }
+
+  input[type="text"]:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: var(--shadow-md);
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius-md);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  button:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  /* Screen reader only (to hide the label from normal view but make the label 
+   accessible to screen readers) */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%); /* modern replacement */
+    white-space: nowrap;
+    border: none;
+  }
+}
+
+/* User info section */
+#user-info {
+  display: flex;
+  gap: 0 2rem;
+  flex-wrap: wrap; /* wrap on small screens */
+  justify-content: space-between;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border: var(--border-on-light-bg);
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-md);
+  margin: 0.5rem 0;
+
+  @media (max-width: 600px) {
+    /* Stack user info vertically on narrow view */
+    flex-direction: column;
+  }
+
+  > div {
+    display: flex;
+    gap: 0.25rem; /* space between label and value */
+    align-items: center;
+    font-weight: 500;
+    color: var(--color-gray-800);
+  }
+
+  > div span:first-child {
+    font-weight: 600;
+    color: #4b5563;
+  }
+}
+
+/* Message area */
+#message {
+  display: none; /* hidden by default */
+  font-weight: 500;
+  min-height: 1.5em; /* keeps space reserved */
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0rem 1rem;
+  border: var(--border-on-light-bg);
+  border-radius: var(--radius-md);
+  background-color: var(--color-message-box-bg);
+  font-size: 0.8rem;
+
+  button {
+    color: #92400e;
+    padding: 0.2rem 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  #message-text.error {
+    color: var(--color-error);
+  }
+
+  #message-text.info {
+    color: var(--color-primary);
+  }
+
+  #message-text.success {
+    color: var(--color-success);
+  }
+}
+
+/* Collection details container */
+.collection-details {
+  margin-bottom: 0;
+  border: var(--border-on-light-bg);
+  border-radius: var(--radius-md);
+
+  padding: 0.5rem 1rem;
+  background: white;
+  box-shadow: var(--shadow-md);
+
+  summary {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  /* Hide default summary marker */
+  summary::marker {
+    display: none;
+    content: "";
+  }
+
+  /* Arrow before name */
+  summary::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  /* Rotate arrow when open */
+  &[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .collection-header {
+    display: flex;
+    gap: 0 0.5rem;
+    width: 100%;
+
+    @media (max-width: 600px) {
+      /* Stack title and completion status vertically on narrow screens */
+      flex-direction: column;
+    }
+  }
+
+  .collection-name {
+    flex: 1;
+    min-width: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-gray-800);
+  }
+
+  .collection-completion-status {
+    font-size: 0.9rem;
+    color: var(--color-completion-status);
+
+    @media (max-width: 600px) {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+/* Katas list */
+.katas-list {
+  margin-top: 0.75rem;
+  padding-left: 0rem;
+}
+
+/* Kata list item */
+.kata-li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1.5rem;
+  border-bottom: var(--color-gray-200);
+
+  .kata-title a {
+    color: #2563eb;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .kata-completed.completed {
+    color: var(--color-success);
+    &::before {
+      content: "Completed";
+
+      @media (max-width: 600px) {
+        content: "✔";
+      }
+    }
+  }
+
+  .kata-completed.incomplete {
+    color: var(--color-error);
+
+    &::before {
+      content: "Incomplete";
+
+      @media (max-width: 600px) {
+        content: "✖";
+      }
+    }
+  }
+}

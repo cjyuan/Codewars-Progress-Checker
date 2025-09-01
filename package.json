@@ -1,0 +1,21 @@
+{
+  "name": "codewars-progress-checker",
+  "version": "1.0.0",
+  "description": "A web app that shows which of the selected katas have been completed by a user.",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjyuan/Codewars-Progress-Checker.git"
+  },
+  "keywords": [
+    "Codewars"
+  ],
+  "author": "CJ Yuan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cjyuan/Codewars-Progress-Checker/issues"
+  },
+  "dependencies": {
+    "node-html-parser": "^7.0.1"
+  }
+}
