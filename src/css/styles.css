@@ -261,7 +261,7 @@ form {
   justify-content: space-between;
   align-items: center;
   column-gap: 1.5rem;
-  border-bottom: var(--color-gray-200);
+  border-bottom: 1pt solid var(--color-gray-200);
 
   .kata-title a {
     color: #2563eb;
