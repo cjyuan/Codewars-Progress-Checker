@@ -5,7 +5,9 @@ const usernameInput = document.getElementById("username");
 
 window.addEventListener("load", async () => {
   window.addEventListener("hashchange", handleHashChanged);
-  document.getElementById("check-btn").addEventListener("click", handleUsernameInput);
+  document
+    .getElementById("check-btn")
+    .addEventListener("click", handleUsernameInput);
 
   handleHashChanged();
 });
@@ -66,13 +68,16 @@ async function loadAndRenderUserProgress(username) {
   render({ kataCollections, userData });
 }
 
-const collectionDetailsTemplate =
-  document.getElementById("collection-template").content.firstElementChild;
-const kataListItemTemplate = document.getElementById("kata-li-template").content.firstElementChild;
+const collectionDetailsTemplate = document.getElementById("collection-template")
+  .content.firstElementChild;
+const kataListItemTemplate =
+  document.getElementById("kata-li-template").content.firstElementChild;
 
 function render({ kataCollections, userData }) {
   function formatCompletionStatus({ completedCount, totalCount }) {
-    const completionPercentage = totalCount ? (completedCount / totalCount) * 100 : 0;
+    const completionPercentage = totalCount
+      ? (completedCount / totalCount) * 100
+      : 0;
     return `Completed: ${completedCount}/${totalCount} (${completionPercentage.toFixed(0)}%)`;
   }
 
@@ -87,7 +92,8 @@ function render({ kataCollections, userData }) {
 
   kataCollections.forEach((collection) => {
     const collectionEl = collectionDetailsTemplate.cloneNode(true);
-    collectionEl.querySelector(".collection-name").textContent = collection.name;
+    collectionEl.querySelector(".collection-name").textContent =
+      collection.name;
     collectionEl.querySelector(".collection-completion-status").textContent =
       formatCompletionStatus(collection);
 
@@ -100,7 +106,7 @@ function render({ kataCollections, userData }) {
 }
 
 function constructKataListItems(listEl, katas) {
-  const fragment = document.createDocumentFragment();  
+  const fragment = document.createDocumentFragment();
   katas.forEach((kata) => {
     const { id, name, completed } = kata;
     const li = kataListItemTemplate.cloneNode(true);
@@ -108,7 +114,9 @@ function constructKataListItems(listEl, katas) {
     a.setAttribute("href", `https://www.codewars.com/kata/${id}`);
     a.textContent = name;
 
-    li.querySelector(".kata-completed").classList.add(completed ? "completed" : "incomplete");
+    li.querySelector(".kata-completed").classList.add(
+      completed ? "completed" : "incomplete",
+    );
 
     fragment.appendChild(li);
   });
